@@ -28,6 +28,7 @@ build:
 .PHONY: all
 # generate all
 all:
+	make init;
 	make api;
 
 # show help
