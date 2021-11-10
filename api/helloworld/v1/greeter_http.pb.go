@@ -35,7 +35,7 @@ func (h *GreeterHTTPHandler) SayHello(req *go_restful.Request, resp *go_restful.
 		resp.WriteErrorString(http.StatusBadRequest, err.Error())
 		return
 	}
-	if err := transportHTTP.GetValue(req, &in); err != nil {
+	if err := transportHTTP.GetPathValue(req, &in); err != nil {
 		resp.WriteErrorString(http.StatusBadRequest, err.Error())
 		return
 	}
