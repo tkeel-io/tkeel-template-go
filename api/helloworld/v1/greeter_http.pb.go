@@ -18,7 +18,7 @@ import transportHTTP "github.com/tkeel-io/kit/transport/http"
 // import package.context.http.go_restful.json.
 
 type GreeterHTTPServer interface {
-	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
+	SayHello(context.Context, *HelloRequest) (*HelloResponse, error)
 }
 
 type GreeterHTTPHandler struct {
@@ -31,11 +31,11 @@ func newGreeterHTTPHandler(s GreeterHTTPServer) *GreeterHTTPHandler {
 
 func (h *GreeterHTTPHandler) SayHello(req *go_restful.Request, resp *go_restful.Response) {
 	in := &HelloRequest{}
-	if err := transportHTTP.GetQuery(req, &in); err != nil {
+	if err := transportHTTP.GetQuery(req, in); err != nil {
 		resp.WriteErrorString(http.StatusBadRequest, err.Error())
 		return
 	}
-	if err := transportHTTP.GetPathValue(req, &in); err != nil {
+	if err := transportHTTP.GetPathValue(req, in); err != nil {
 		resp.WriteErrorString(http.StatusBadRequest, err.Error())
 		return
 	}
@@ -59,13 +59,21 @@ func (h *GreeterHTTPHandler) SayHello(req *go_restful.Request, resp *go_restful.
 }
 
 func RegisterGreeterHTTPServer(container *go_restful.Container, srv GreeterHTTPServer) {
-	handler := newGreeterHTTPHandler(srv)
+	var ws *go_restful.WebService
+	for _, v := range container.RegisteredWebServices() {
+		if v.RootPath() == "/v1" {
+			ws = v
+			break
+		}
+	}
+	if ws == nil {
+		ws = new(go_restful.WebService)
+		ws.ApiVersion("/v1")
+		ws.Path("/v1").Produces(go_restful.MIME_JSON)
+		container.Add(ws)
+	}
 
-	ws := new(go_restful.WebService)
-	ws.ApiVersion("v1")
-	ws.Path("/v1").Produces(go_restful.MIME_JSON)
+	handler := newGreeterHTTPHandler(srv)
 	ws.Route(ws.GET("/helloworld/{name}").
 		To(handler.SayHello))
-
-	container.Add(ws)
 }
