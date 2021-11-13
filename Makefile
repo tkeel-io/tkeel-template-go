@@ -6,9 +6,10 @@ API_PROTO_FILES=$(shell find api -name *.proto)
 .PHONY: init
 # init env
 init:
+	go get -u github.com/tkeel-io/tkeel-interface/tool
 	go get -u google.golang.org/protobuf/cmd/protoc-gen-go
 	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
-	go get -u github.com/tkeel-io/kit/cmd/protoc-gen-go-http
+	go get -u github.com/tkeel-io/tkeel-interface/protoc-gen-go-http
 
 .PHONY: api
 # generate api proto
@@ -25,11 +26,17 @@ api:
 build:
 	mkdir -p bin/ && go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
 
+.PHONY: generate
+# generate
+generate:
+	go generate ./...
+
+
 .PHONY: all
 # generate all
 all:
-	make init;
 	make api;
+	make generate;
 
 # show help
 help:

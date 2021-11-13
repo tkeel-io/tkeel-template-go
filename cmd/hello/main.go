@@ -9,8 +9,14 @@ import (
 
 	"github.com/tkeel-io/kit/app"
 	"github.com/tkeel-io/kit/log"
+	"github.com/tkeel-io/kit/transport"
 	"github.com/tkeel-io/tkeel-template-go/pkg/server"
 	"github.com/tkeel-io/tkeel-template-go/pkg/service"
+)
+
+import (//User import
+	helloworld "github.com/tkeel-io/tkeel-template-go/api/helloworld/v1"
+	openapi "github.com/tkeel-io/tkeel-template-go/api/openapi/v1"
 )
 
 var (
@@ -31,8 +37,9 @@ func init() {
 func main() {
 	flag.Parse()
 
-	greeterSrv := service.NewGreeterService()
-	openapiSrv := service.NewOpenapiService()
+	httpSrv := server.NewHTTPServer(HTTPAddr)
+	grpcSrv := server.NewGRPCServer(GRPCAddr)
+	serverList := []transport.Server{httpSrv, grpcSrv}
 
 	app := app.New(Name,
 		&log.Conf{
@@ -40,9 +47,21 @@ func main() {
 			Level: "debug",
 			Dev:   true,
 		},
-		server.NewHTTPServer(HTTPAddr, greeterSrv, openapiSrv),
-		server.NewGRPCServer(GRPCAddr, greeterSrv, openapiSrv),
+		serverList...,
 	)
+
+
+	{//User service
+		GreeterSrv := service.NewGreeterService()
+		helloworld.RegisterGreeterHTTPServer(httpSrv.Container, GreeterSrv)
+		helloworld.RegisterGreeterServer(grpcSrv.GetServe(), GreeterSrv)
+
+		OpenapiSrv := service.NewOpenapiService()
+		openapi.RegisterOpenapiHTTPServer(httpSrv.Container, OpenapiSrv)
+		openapi.RegisterOpenapiServer(grpcSrv.GetServe(), OpenapiSrv)
+	}
+
+
 	if err := app.Run(context.TODO()); err != nil {
 		panic(err)
 	}
