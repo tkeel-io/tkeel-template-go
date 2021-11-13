@@ -19,6 +19,6 @@ func NewGreeterService() *GreeterService {
 }
 
 // SayHello implements helloworld.GreeterServer
-func (s *GreeterService) SayHello(ctx context.Context, in *v1.HelloRequest) (*v1.HelloReply, error) {
-	return &v1.HelloReply{Message: "Hello " + in.GetName()}, nil
+func (s *GreeterService) SayHello(ctx context.Context, in *v1.HelloRequest) (*v1.HelloResponse, error) {
+	return &v1.HelloResponse{Message: "Hello " + in.GetName()}, nil
 }

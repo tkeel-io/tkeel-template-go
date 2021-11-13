@@ -8,6 +8,7 @@ import (
 	"syscall"
 
 	"github.com/tkeel-io/kit/app"
+	"github.com/tkeel-io/kit/log"
 	"github.com/tkeel-io/tkeel-template-go/pkg/server"
 	"github.com/tkeel-io/tkeel-template-go/pkg/service"
 )
@@ -31,10 +32,16 @@ func main() {
 	flag.Parse()
 
 	greeterSrv := service.NewGreeterService()
+	openapiSrv := service.NewOpenapiService()
 
 	app := app.New(Name,
-		server.NewHTTPServer(HTTPAddr, greeterSrv),
-		server.NewGRPCServer(GRPCAddr, greeterSrv),
+		&log.Conf{
+			App:   Name,
+			Level: "debug",
+			Dev:   true,
+		},
+		server.NewHTTPServer(HTTPAddr, greeterSrv, openapiSrv),
+		server.NewGRPCServer(GRPCAddr, greeterSrv, openapiSrv),
 	)
 	if err := app.Run(context.TODO()); err != nil {
 		panic(err)
