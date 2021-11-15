@@ -1,6 +1,6 @@
 package util
 
-import v1 "github.com/tkeel-io/tkeel-template-go/api/openapi/v1"
+import v1 "github.com/tkeel-io/tkeel-interface/openapi/v1"
 
 func GetV1ResultOK() *v1.Result {
 	return &v1.Result{

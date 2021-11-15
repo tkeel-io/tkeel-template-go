@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package openapi.v1;
 
-import "api/openapi/v1/openapi.proto";
+import "openapi/v1/openapi.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 

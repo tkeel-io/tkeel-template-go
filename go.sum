@@ -84,6 +84,8 @@ github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5Cc
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/tkeel-io/kit v0.0.0-20211113050934-b0424690977a h1:ztDEhmWspUgrGntbhlPPoHdiUTiwheS+l2cjYJlVEKM=
 github.com/tkeel-io/kit v0.0.0-20211113050934-b0424690977a/go.mod h1:j4xnjUXkc44InMNhGX7z5MbRf164ILLYZhWJL1ykW7I=
+github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20211115054750-99d23dfdfd2e h1:GCSq897AJo3j5MZAZ68bDwS6yCNWgTcIL04QTTt8VUM=
+github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20211115054750-99d23dfdfd2e/go.mod h1:tjJgHPar2pFjydhnOCLspww8tSOvcKch241PeP9OL8E=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 go.etcd.io/etcd v3.3.27+incompatible/go.mod h1:yaeTdrJi5lOmYerz05bd8+V7KubZs8YSFZfzsF9A6aI=
 go.opentelemetry.io/proto/otlp v0.7.0/go.mod h1:PqfVotwruBrMGOCsRd/89rSnXhoiJIqeYNgFYFoEGnI=
