@@ -12,10 +12,10 @@ import (
 	"github.com/tkeel-io/kit/transport"
 	"github.com/tkeel-io/tkeel-template-go/pkg/server"
 	"github.com/tkeel-io/tkeel-template-go/pkg/service"
-)
 
-import (//User import
+	// User import
 	helloworld "github.com/tkeel-io/tkeel-template-go/api/helloworld/v1"
+
 	openapi "github.com/tkeel-io/tkeel-template-go/api/openapi/v1"
 )
 
@@ -50,8 +50,7 @@ func main() {
 		serverList...,
 	)
 
-
-	{//User service
+	{ // User service
 		GreeterSrv := service.NewGreeterService()
 		helloworld.RegisterGreeterHTTPServer(httpSrv.Container, GreeterSrv)
 		helloworld.RegisterGreeterServer(grpcSrv.GetServe(), GreeterSrv)
@@ -60,7 +59,6 @@ func main() {
 		openapi.RegisterOpenapiHTTPServer(httpSrv.Container, OpenapiSrv)
 		openapi.RegisterOpenapiServer(grpcSrv.GetServe(), OpenapiSrv)
 	}
-
 
 	if err := app.Run(context.TODO()); err != nil {
 		panic(err)

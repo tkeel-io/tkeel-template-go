@@ -6,12 +6,12 @@ syntax = "proto3";
 
 package openapi.v1;
 
-option go_package = "github.com/tkeel-io/tkeel-template-go/api/openapi/v1;v1";
+option go_package = "github.com/tkeel-io/tkeel-interface/openapi/v1;v1";
 
 /**
  * error code enum.
  **/
-enum retcode {
+enum Retcode {
   ok = 0;
   badRequest = 400;
   internalError = 500;
@@ -20,7 +20,7 @@ enum retcode {
 /**
  * plugin state enum.
  **/
-enum pluginStatus {
+enum PluginStatus {
   error = 0;
   starting = 1;
   runing = 2;
@@ -31,15 +31,15 @@ enum pluginStatus {
 /**
  * message result.
  **/
-message result {
-  retcode ret = 1; // response retcode.
+message Result {
+  Retcode ret = 1; // response retcode.
   string msg = 2;  // response ret msg.
 }
 
 /**
  * message brief plugin information.
  **/
-message briefPluginInfo {
+message BriefPluginInfo {
   string id = 1;      // plugin id.
   string version = 2; // plugin verison.
 }
@@ -47,7 +47,7 @@ message briefPluginInfo {
 /**
  * message plugin declares extension point.
  **/
-message addonsPoint {
+message AddonsPoint {
   string name = 1; // addons point name.
   string desc = 2; // addons point description.
 }
@@ -55,7 +55,7 @@ message addonsPoint {
 /**
  * message plugin declares implemented other plugin extension point.
  **/
-message implementedAddons {
+message ImplementedAddons {
   string addonsPoint = 1; //
   string implementedEndpoint = 2;
 }
@@ -63,9 +63,9 @@ message implementedAddons {
 /**
  * message plugin implemented other plugin.
  **/
-message implementedPlugin {
-  briefPluginInfo plugin = 1;            // implemented plugin information.
-  repeated implementedAddons addons = 2; // implemented addons point list.
+message ImplementedPlugin {
+  BriefPluginInfo plugin = 1;            // implemented plugin information.
+  repeated ImplementedAddons addons = 2; // implemented addons point list.
 }
 
 /**
@@ -73,12 +73,12 @@ message implementedPlugin {
  * used when the plugin registered.
  **/
 message IdentifyResponse {
-  result res = 1;                       // detail result.
+  Result res = 1;                       // detail result.
   string pluginID = 2;                  // register plugin id.
   string version = 3;                   // register plugin version
   string tkeelVersion = 4;              // register plugin depend tkeel version.
-  repeated addonsPoint addonsPoint = 5; // register plugin declares addons.
-  repeated implementedPlugin implementedPlugin =
+  repeated AddonsPoint addonsPoint = 5; // register plugin declares addons.
+  repeated ImplementedPlugin implementedPlugin =
       6; // register plugin implemented plugin list.
 }
 
@@ -88,8 +88,8 @@ message IdentifyResponse {
  * the extension point of the registered plugin.
  **/
 message AddonsIdentifyRequest {
-  briefPluginInfo plugin = 1; // implemented plugin information.
-  repeated implementedAddons implementedAddons = 2; // implemented addons.
+  BriefPluginInfo plugin = 1; // implemented plugin information.
+  repeated ImplementedAddons implementedAddons = 2; // implemented addons.
 }
 
 /**
@@ -98,7 +98,7 @@ message AddonsIdentifyRequest {
  * the extension point of the registered plugin.
  **/
 message AddonsIdentifyResponse {
-  result res = 1; // detail result.
+  Result res = 1; // detail result.
 }
 
 /**
@@ -115,7 +115,7 @@ message TenantBindRequst {
  * used when the tenant administrator enables the plugin.
  **/
 message TenantBindResponse {
-  result res = 1; // detail result
+  Result res = 1; // detail result
 }
 
 /**
@@ -132,7 +132,7 @@ message TenantUnbindRequst {
  * used when the tenant administrator disables the plugin.
  **/
 message TenantUnbindResponse {
-  result res = 1; // detail result
+  Result res = 1; // detail result
 }
 
 /**
@@ -140,6 +140,6 @@ message TenantUnbindResponse {
  * used when the tkeel checks the status of plugins regularly.
  **/
 message StatusResponse {
-  result res = 1;          // detail result
-  pluginStatus status = 2; // plugin status.
+  Result res = 1;          // detail result
+  PluginStatus status = 2; // plugin status.
 }
