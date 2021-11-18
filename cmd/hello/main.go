@@ -13,18 +13,18 @@ import (
 	"github.com/tkeel-io/tkeel-template-go/pkg/server"
 	"github.com/tkeel-io/tkeel-template-go/pkg/service"
 
-	// User import
+	// User import.
 	helloworld "github.com/tkeel-io/tkeel-template-go/api/helloworld/v1"
 
 	openapi "github.com/tkeel-io/tkeel-template-go/api/openapi/v1"
 )
 
 var (
-	// app name
+	// Name app.
 	Name string
-	// http addr
+	// HTTPAddr string.
 	HTTPAddr string
-	// grpc addr
+	// GRPCAddr string.
 	GRPCAddr string
 )
 
