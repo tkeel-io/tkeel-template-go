@@ -45,7 +45,7 @@ func (h *GreeterHTTPHandler) SayHello(req *go_restful.Request, resp *go_restful.
 		return
 	}
 
-	ctx := context.WithValue(req.Request.Context(), transportHTTP.ContextHTTPHeaderKey,
+	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), transportHTTP.ContextHTTPHeaderKey,
 		req.Request.Header)
 
 	out, err := h.srv.SayHello(ctx, &in)
