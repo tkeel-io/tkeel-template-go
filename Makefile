@@ -6,10 +6,14 @@ API_PROTO_FILES=$(shell find api -name *.proto)
 .PHONY: init
 # init env
 init:
-	go get -u github.com/tkeel-io/tkeel-interface/tool
+	go get -u github.com/tkeel-io/tkeel-interface/tool/cmd/artisan
+	go get -u github.com/tkeel-io/tkeel-interface/openapi
+	go get -u github.com/tkeel-io/kit
 	go get -u google.golang.org/protobuf/cmd/protoc-gen-go
 	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 	go get -u github.com/tkeel-io/tkeel-interface/protoc-gen-go-http
+	go get -u github.com/tkeel-io/tkeel-interface/protoc-gen-go-errors
+	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
 
 .PHONY: api
 # generate api proto
@@ -19,6 +23,11 @@ api:
  	       --go_out=paths=source_relative:. \
  	       --go-http_out=paths=source_relative:. \
  	       --go-grpc_out=paths=source_relative:. \
+ 	       --doc_out=. --doc_opt=json,example.json:Ignore* \
+ 	       --go-errors_out=paths=source_relative:. \
+ 	       --openapiv2_out . \
+ 	       --openapiv2_opt logtostderr=true \
+ 	       --openapiv2_opt json_names_for_fields=false \
 	       $(API_PROTO_FILES)
 
 .PHONY: build
