@@ -23,7 +23,6 @@ api:
  	       --go_out=paths=source_relative:. \
  	       --go-http_out=paths=source_relative:. \
  	       --go-grpc_out=paths=source_relative:. \
- 	       --doc_out=. --doc_opt=json,example.json:Ignore* \
  	       --go-errors_out=paths=source_relative:. \
  	       --openapiv2_out . \
  	       --openapiv2_opt logtostderr=true \
