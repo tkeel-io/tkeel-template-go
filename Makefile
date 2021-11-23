@@ -26,9 +26,10 @@ api:
  	       --go-http_out=paths=source_relative:. \
  	       --go-grpc_out=paths=source_relative:. \
  	       --go-errors_out=paths=source_relative:. \
- 	       --openapiv2_out . \
- 	       --openapiv2_opt logtostderr=true \
- 	       --openapiv2_opt json_names_for_fields=false \
+ 	       --openapiv2_out=./api/ \
+		   --openapiv2_opt=allow_merge=true \
+ 	       --openapiv2_opt=logtostderr=true \
+ 	       --openapiv2_opt=json_names_for_fields=false \
 	       $(API_PROTO_FILES)
 
 .PHONY: build

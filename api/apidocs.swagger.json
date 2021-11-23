@@ -1,10 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "api/openapi/v1/server.proto",
+    "title": "api/helloworld/v1/error.proto",
     "version": "version not set"
   },
   "tags": [
+    {
+      "name": "Greeter"
+    },
     {
       "name": "Openapi"
     }
@@ -46,6 +49,45 @@
         ],
         "tags": [
           "Openapi"
+        ]
+      }
+    },
+    "/helloworld/{name}": {
+      "post": {
+        "summary": "Sends a greeting",
+        "operationId": "Greeter_SayHello",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1HelloResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1Test"
+            }
+          }
+        ],
+        "tags": [
+          "Greeter"
         ]
       }
     },
@@ -238,6 +280,15 @@
       },
       "description": "*\nmessage brief plugin information."
     },
+    "v1HelloResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "The response message containing the greetings"
+    },
     "v1IdentifyResponse": {
       "type": "object",
       "properties": {
@@ -384,6 +435,17 @@
         }
       },
       "description": "*\nThe response value of the POST /v1/tenant/unbind,\nused when the tenant administrator disables the plugin."
+    },
+    "v1Test": {
+      "type": "object",
+      "properties": {
+        "aaa": {
+          "type": "string"
+        },
+        "bbb": {
+          "type": "string"
+        }
+      }
     }
   }
 }

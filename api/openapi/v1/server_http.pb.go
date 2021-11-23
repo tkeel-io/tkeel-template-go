@@ -43,8 +43,7 @@ func (h *OpenapiHTTPHandler) AddonsIdentify(req *go_restful.Request, resp *go_re
 		return
 	}
 
-	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), transportHTTP.ContextHTTPHeaderKey,
-		req.Request.Header)
+	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), req.Request.Header)
 
 	out, err := h.srv.AddonsIdentify(ctx, &in)
 	if err != nil {
@@ -73,8 +72,7 @@ func (h *OpenapiHTTPHandler) Identify(req *go_restful.Request, resp *go_restful.
 		return
 	}
 
-	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), transportHTTP.ContextHTTPHeaderKey,
-		req.Request.Header)
+	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), req.Request.Header)
 
 	out, err := h.srv.Identify(ctx, &in)
 	if err != nil {
@@ -103,8 +101,7 @@ func (h *OpenapiHTTPHandler) Tatus(req *go_restful.Request, resp *go_restful.Res
 		return
 	}
 
-	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), transportHTTP.ContextHTTPHeaderKey,
-		req.Request.Header)
+	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), req.Request.Header)
 
 	out, err := h.srv.Tatus(ctx, &in)
 	if err != nil {
@@ -133,8 +130,7 @@ func (h *OpenapiHTTPHandler) TenantBind(req *go_restful.Request, resp *go_restfu
 		return
 	}
 
-	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), transportHTTP.ContextHTTPHeaderKey,
-		req.Request.Header)
+	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), req.Request.Header)
 
 	out, err := h.srv.TenantBind(ctx, &in)
 	if err != nil {
@@ -163,8 +159,7 @@ func (h *OpenapiHTTPHandler) TenantUnbind(req *go_restful.Request, resp *go_rest
 		return
 	}
 
-	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), transportHTTP.ContextHTTPHeaderKey,
-		req.Request.Header)
+	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), req.Request.Header)
 
 	out, err := h.srv.TenantUnbind(ctx, &in)
 	if err != nil {

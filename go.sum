@@ -84,8 +84,8 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
 github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/tkeel-io/kit v0.0.0-20211122034650-12c5556dfcd5 h1:q4mFqRnOUGURUxAGaqO71D1PEubuZy8ZiLJvBKxnbY8=
-github.com/tkeel-io/kit v0.0.0-20211122034650-12c5556dfcd5/go.mod h1:j4xnjUXkc44InMNhGX7z5MbRf164ILLYZhWJL1ykW7I=
+github.com/tkeel-io/kit v0.0.0-20211122161648-31b3986683f2 h1:BDxx9F7wxGGOoyo9SHJD1Xx4K0LUH1Yn7o2dvbfKmFc=
+github.com/tkeel-io/kit v0.0.0-20211122161648-31b3986683f2/go.mod h1:j4xnjUXkc44InMNhGX7z5MbRf164ILLYZhWJL1ykW7I=
 github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20211118023522-252e6880c03a h1:FyFPE9vlcFEteYTBXMX0neSndknwoGvurlIW2kPMgM0=
 github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20211118023522-252e6880c03a/go.mod h1:tjJgHPar2pFjydhnOCLspww8tSOvcKch241PeP9OL8E=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
