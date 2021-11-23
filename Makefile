@@ -6,14 +6,16 @@ API_PROTO_FILES=$(shell find api -name *.proto)
 .PHONY: init
 # init env
 init:
-	go install  github.com/tkeel-io/tkeel-interface/tool/cmd/artisan
-	go install  github.com/tkeel-io/tkeel-interface/openapi
-	go install  github.com/tkeel-io/kit
-	go install  google.golang.org/protobuf/cmd/protoc-gen-go
-	go install  google.golang.org/grpc/cmd/protoc-gen-go-grpc
-	go install  github.com/tkeel-io/tkeel-interface/protoc-gen-go-http
-	go install  github.com/tkeel-io/tkeel-interface/protoc-gen-go-errors
-	go install  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+	go get -d -u  github.com/tkeel-io/tkeel-interface/openapi
+	go get -d -u  github.com/tkeel-io/kit
+	go get -d -u  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+
+	go install  github.com/tkeel-io/tkeel-interface/tool/cmd/artisan@latest
+	go install  google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	go install  google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+	go install  github.com/tkeel-io/tkeel-interface/protoc-gen-go-http@latest
+	go install  github.com/tkeel-io/tkeel-interface/protoc-gen-go-errors@latest
+	go install  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
 .PHONY: api
 # generate api proto
