@@ -117,7 +117,7 @@
     "/status": {
       "get": {
         "summary": "Query status.",
-        "operationId": "Openapi_tatus",
+        "operationId": "Openapi_Status",
         "responses": {
           "200": {
             "description": "A successful response.",

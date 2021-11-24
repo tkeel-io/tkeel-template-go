@@ -29,7 +29,7 @@ type OpenapiClient interface {
 	// Post tenant bind.
 	TenantUnbind(ctx context.Context, in *v1.TenantUnbindRequst, opts ...grpc.CallOption) (*v1.TenantUnbindResponse, error)
 	// Query status.
-	Tatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v1.StatusResponse, error)
+	Status(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v1.StatusResponse, error)
 }
 
 type openapiClient struct {
@@ -76,9 +76,9 @@ func (c *openapiClient) TenantUnbind(ctx context.Context, in *v1.TenantUnbindReq
 	return out, nil
 }
 
-func (c *openapiClient) Tatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v1.StatusResponse, error) {
+func (c *openapiClient) Status(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v1.StatusResponse, error) {
 	out := new(v1.StatusResponse)
-	err := c.cc.Invoke(ctx, "/openapi.v1.Openapi/tatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/openapi.v1.Openapi/Status", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,7 +98,7 @@ type OpenapiServer interface {
 	// Post tenant bind.
 	TenantUnbind(context.Context, *v1.TenantUnbindRequst) (*v1.TenantUnbindResponse, error)
 	// Query status.
-	Tatus(context.Context, *emptypb.Empty) (*v1.StatusResponse, error)
+	Status(context.Context, *emptypb.Empty) (*v1.StatusResponse, error)
 	mustEmbedUnimplementedOpenapiServer()
 }
 
@@ -118,8 +118,8 @@ func (UnimplementedOpenapiServer) TenantBind(context.Context, *v1.TenantBindRequ
 func (UnimplementedOpenapiServer) TenantUnbind(context.Context, *v1.TenantUnbindRequst) (*v1.TenantUnbindResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TenantUnbind not implemented")
 }
-func (UnimplementedOpenapiServer) Tatus(context.Context, *emptypb.Empty) (*v1.StatusResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Tatus not implemented")
+func (UnimplementedOpenapiServer) Status(context.Context, *emptypb.Empty) (*v1.StatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Status not implemented")
 }
 func (UnimplementedOpenapiServer) mustEmbedUnimplementedOpenapiServer() {}
 
@@ -206,20 +206,20 @@ func _Openapi_TenantUnbind_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Openapi_Tatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Openapi_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenapiServer).Tatus(ctx, in)
+		return srv.(OpenapiServer).Status(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/openapi.v1.Openapi/tatus",
+		FullMethod: "/openapi.v1.Openapi/Status",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenapiServer).Tatus(ctx, req.(*emptypb.Empty))
+		return srv.(OpenapiServer).Status(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -248,8 +248,8 @@ var Openapi_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Openapi_TenantUnbind_Handler,
 		},
 		{
-			MethodName: "tatus",
-			Handler:    _Openapi_Tatus_Handler,
+			MethodName: "Status",
+			Handler:    _Openapi_Status_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
