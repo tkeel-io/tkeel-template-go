@@ -3,6 +3,7 @@ syntax = "proto3";
 package helloworld.v1;
 
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/tkeel-io/tkeel-template-go/api/helloworld/v1;v1";
 option java_multiple_files = true;
@@ -11,11 +12,22 @@ option java_outer_classname = "OpenapiProtoV1";
 
 // The greeting service definition.
 service Greeter {
-  // Sends a greeting
+  // Sends a greeting（此处定义接口说明）
   rpc SayHello(HelloRequest) returns (HelloResponse) {
     option (google.api.http) = {
       post : "/helloworld/{name}"
       body : "test"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get a message.（服务描述）";
+      operation_id: "getMessage（服务重命名）";
+      tags: "Greeter（服务分组测试）";
+      responses: {
+        key: "200"
+        value: {
+          description: "OK";
+        }
+      }
     };
   }
 }
@@ -27,9 +39,11 @@ message Test {
 
 // The request message containing the user's name.
 message HelloRequest {
-  string name = 1;
-  Test test = 2;
+  string name = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "Description sample of helloworld's name"}];
+  Test test = 2 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "Description sample of helloworld"}];
 }
 
 // The response message containing the greetings
-message HelloResponse { string message = 1; }
+message HelloResponse {
+  string message = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "Hello Response"}];
+}
