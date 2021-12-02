@@ -54,11 +54,11 @@
     },
     "/helloworld/{name}": {
       "post": {
-        "summary": "Sends a greeting",
-        "operationId": "Greeter_SayHello",
+        "summary": "Get a message.（服务描述）",
+        "operationId": "getMessage（服务重命名）",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/v1HelloResponse"
             }
@@ -73,21 +73,24 @@
         "parameters": [
           {
             "name": "name",
+            "description": "Description sample of helloworld's name",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "body",
+            "description": "Description sample of helloworld",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1Test"
+              "$ref": "#/definitions/v1Test",
+              "description": "Description sample of helloworld"
             }
           }
         ],
         "tags": [
-          "Greeter"
+          "Greeter（服务分组测试）"
         ]
       }
     },
@@ -284,7 +287,8 @@
       "type": "object",
       "properties": {
         "message": {
-          "type": "string"
+          "type": "string",
+          "description": "Hello Response"
         }
       },
       "title": "The response message containing the greetings"
