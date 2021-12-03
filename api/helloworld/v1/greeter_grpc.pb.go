@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GreeterClient interface {
-	// Sends a greeting
+	// Sends a greeting（此处定义接口说明）
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
 }
 
@@ -43,7 +43,7 @@ func (c *greeterClient) SayHello(ctx context.Context, in *HelloRequest, opts ...
 // All implementations must embed UnimplementedGreeterServer
 // for forward compatibility
 type GreeterServer interface {
-	// Sends a greeting
+	// Sends a greeting（此处定义接口说明）
 	SayHello(context.Context, *HelloRequest) (*HelloResponse, error)
 	mustEmbedUnimplementedGreeterServer()
 }

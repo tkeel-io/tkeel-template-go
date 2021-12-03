@@ -3,6 +3,7 @@ syntax = "proto3";
 package helloworld.v1;
 
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/tkeel-io/tkeel-template-go/api/helloworld/v1;v1";
@@ -41,6 +42,7 @@ message Test {
 message HelloRequest {
   string name = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "Description sample of helloworld's name"}];
   Test test = 2 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "Description sample of helloworld"}];
+  string query = 3 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "query filed"}, (google.api.field_behavior) = REQUIRED];
 }
 
 // The response message containing the greetings

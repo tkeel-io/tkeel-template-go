@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/emicklei/go-restful v2.15.0+incompatible
-	github.com/google/go-cmp v0.5.6 // indirect
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.7.0
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/tkeel-io/kit v0.0.0-20211122161648-31b3986683f2
