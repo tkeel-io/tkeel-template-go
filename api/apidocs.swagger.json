@@ -21,11 +21,11 @@
   "paths": {
     "/addons/identify": {
       "post": {
-        "summary": "Post addons identify.",
-        "operationId": "Openapi_AddonsIdentify",
+        "summary": "openapi addons identify",
+        "operationId": "Identify",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/v1AddonsIdentifyResponse"
             }
@@ -55,7 +55,7 @@
     "/helloworld/{name}": {
       "post": {
         "summary": "Get a message.（服务描述）",
-        "operationId": "getMessage（服务重命名）",
+        "operationId": "SayHello",
         "responses": {
           "200": {
             "description": "OK",
@@ -80,34 +80,30 @@
           },
           {
             "name": "body",
-            "description": "Description sample of helloworld",
+            "description": "query filed",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1Test",
-              "description": "Description sample of helloworld"
+              "type": "string",
+              "description": "query filed",
+              "required": [
+                "query"
+              ]
             }
-          },
-          {
-            "name": "query",
-            "description": "query filed",
-            "in": "query",
-            "required": true,
-            "type": "string"
           }
         ],
         "tags": [
-          "Greeter（服务分组测试）"
+          "Greeter"
         ]
       }
     },
     "/identify": {
       "get": {
-        "summary": "Query identify.",
-        "operationId": "Openapi_Identify",
+        "summary": "openapi identify",
+        "operationId": "Identify",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/v1IdentifyResponse"
             }
@@ -126,11 +122,11 @@
     },
     "/status": {
       "get": {
-        "summary": "Query status.",
-        "operationId": "Openapi_Status",
+        "summary": "openapi status",
+        "operationId": "Status",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/v1StatusResponse"
             }
@@ -149,11 +145,11 @@
     },
     "/tenant/bind": {
       "post": {
-        "summary": "Post tenant bind.",
-        "operationId": "Openapi_TenantBind",
+        "summary": "openapi tenant bind",
+        "operationId": "TenantBind",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/v1TenantBindResponse"
             }
@@ -182,11 +178,11 @@
     },
     "/tenant/unbind": {
       "post": {
-        "summary": "Post tenant bind.",
-        "operationId": "Openapi_TenantUnbind",
+        "summary": "openapi tenant unbind",
+        "operationId": "TenantUnbind",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "OK",
             "schema": {
               "$ref": "#/definitions/v1TenantUnbindResponse"
             }
@@ -290,6 +286,33 @@
       },
       "description": "*\nmessage brief plugin information."
     },
+    "v1ConsoleEntry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "entry": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ConsoleEntry"
+          }
+        }
+      },
+      "description": "plugin console entry."
+    },
     "v1HelloResponse": {
       "type": "object",
       "properties": {
@@ -326,6 +349,12 @@
           "items": {
             "$ref": "#/definitions/v1ImplementedPlugin"
           }
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ConsoleEntry"
+          }
         }
       },
       "description": "*\nThe response value of the GET /v1/identify,\nused when the plugin registered."
@@ -361,9 +390,9 @@
       "type": "string",
       "enum": [
         "ERROR",
-        "STARTING",
-        "RUNING",
-        "STOPPING",
+        "UNREGISTER",
+        "REGISTER",
+        "RUNNING",
         "STOPPED"
       ],
       "default": "ERROR",
@@ -446,17 +475,6 @@
         }
       },
       "description": "*\nThe response value of the POST /v1/tenant/unbind,\nused when the tenant administrator disables the plugin."
-    },
-    "v1Test": {
-      "type": "object",
-      "properties": {
-        "aaa": {
-          "type": "string"
-        },
-        "bbb": {
-          "type": "string"
-        }
-      }
     }
   }
 }

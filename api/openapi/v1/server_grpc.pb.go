@@ -21,14 +21,19 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OpenapiClient interface {
 	// Query identify.
+	// RAW_DATA_RESPONSE.
 	Identify(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v1.IdentifyResponse, error)
 	// Post addons identify.
+	// RAW_DATA_RESPONSE.
 	AddonsIdentify(ctx context.Context, in *v1.AddonsIdentifyRequest, opts ...grpc.CallOption) (*v1.AddonsIdentifyResponse, error)
 	// Post tenant bind.
+	// RAW_DATA_RESPONSE.
 	TenantBind(ctx context.Context, in *v1.TenantBindRequst, opts ...grpc.CallOption) (*v1.TenantBindResponse, error)
 	// Post tenant bind.
+	// RAW_DATA_RESPONSE.
 	TenantUnbind(ctx context.Context, in *v1.TenantUnbindRequst, opts ...grpc.CallOption) (*v1.TenantUnbindResponse, error)
 	// Query status.
+	// RAW_DATA_RESPONSE.
 	Status(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*v1.StatusResponse, error)
 }
 
@@ -90,14 +95,19 @@ func (c *openapiClient) Status(ctx context.Context, in *emptypb.Empty, opts ...g
 // for forward compatibility
 type OpenapiServer interface {
 	// Query identify.
+	// RAW_DATA_RESPONSE.
 	Identify(context.Context, *emptypb.Empty) (*v1.IdentifyResponse, error)
 	// Post addons identify.
+	// RAW_DATA_RESPONSE.
 	AddonsIdentify(context.Context, *v1.AddonsIdentifyRequest) (*v1.AddonsIdentifyResponse, error)
 	// Post tenant bind.
+	// RAW_DATA_RESPONSE.
 	TenantBind(context.Context, *v1.TenantBindRequst) (*v1.TenantBindResponse, error)
 	// Post tenant bind.
+	// RAW_DATA_RESPONSE.
 	TenantUnbind(context.Context, *v1.TenantUnbindRequst) (*v1.TenantUnbindResponse, error)
 	// Query status.
+	// RAW_DATA_RESPONSE.
 	Status(context.Context, *emptypb.Empty) (*v1.StatusResponse, error)
 	mustEmbedUnimplementedOpenapiServer()
 }

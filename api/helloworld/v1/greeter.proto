@@ -17,35 +17,38 @@ service Greeter {
   rpc SayHello(HelloRequest) returns (HelloResponse) {
     option (google.api.http) = {
       post : "/helloworld/{name}"
-      body : "test"
+      body : "query"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Get a message.（服务描述）";
-      operation_id: "getMessage（服务重命名）";
-      tags: "Greeter（服务分组测试）";
-      responses: {
-        key: "200"
-        value: {
-          description: "OK";
-        }
+      summary : "Get a message.（服务描述）"
+      operation_id : "SayHello"
+      tags : "Greeter"
+      responses : {
+        key : "200"
+        value : {description : "OK"}
       }
     };
   }
 }
 
-message Test {
-  string aaa = 1;
-  string bbb = 2;
-}
-
 // The request message containing the user's name.
 message HelloRequest {
-  string name = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "Description sample of helloworld's name"}];
-  Test test = 2 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "Description sample of helloworld"}];
-  string query = 3 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "query filed"}, (google.api.field_behavior) = REQUIRED];
+  string name = 1
+      [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description : "Description sample of helloworld's name"
+      } ];
+  string query = 2 [
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+      description : "query filed"
+    },
+    (google.api.field_behavior) = REQUIRED
+  ];
 }
 
 // The response message containing the greetings
 message HelloResponse {
-  string message = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {description: "Hello Response"}];
+  string message = 1
+      [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description : "Hello Response"
+      } ];
 }

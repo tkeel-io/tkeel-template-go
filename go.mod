@@ -7,8 +7,8 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.7.0
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/tkeel-io/kit v0.0.0-20211122161648-31b3986683f2
-	github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20211118023522-252e6880c03a
+	github.com/tkeel-io/kit v0.0.0-20211223050802-7dfccfe43fdb
+	github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20211223081012-25aaa61491ab
 	golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d // indirect
 	golang.org/x/sys v0.0.0-20211117180635-dee7805ff2e1 // indirect
 	golang.org/x/text v0.3.7 // indirect
