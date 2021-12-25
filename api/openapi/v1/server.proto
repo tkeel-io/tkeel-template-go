@@ -13,10 +13,12 @@ option java_package = "dev.tkeel.hello.api.openapi.v1";
 option java_outer_classname = "OpenapiProtoV1";
 
 // The openapi service definition.
-// RAW_DATA_RESPONSE
+// TKEEL_COMMENT
+// {"response":{"raw_data":true}}
 service Openapi {
   // Query identify.
-  // RAW_DATA_RESPONSE.
+  // TKEEL_COMMENT
+  // {"response":{"raw_data":true}}
   rpc Identify(google.protobuf.Empty) returns (IdentifyResponse) {
     option (google.api.http) = {
       get : "/identify"
@@ -33,7 +35,13 @@ service Openapi {
   }
 
   // Post addons identify.
-  // RAW_DATA_RESPONSE.
+  // TKEEL_COMMENT
+  // {
+  //  "response" :
+  //    {
+  //      "raw_data": true
+  //    }
+  // }
   rpc AddonsIdentify(AddonsIdentifyRequest) returns (AddonsIdentifyResponse) {
     option (google.api.http) = {
       post : "/addons/identify"
@@ -51,7 +59,8 @@ service Openapi {
   }
 
   // Post tenant bind.
-  // RAW_DATA_RESPONSE.
+  // TKEEL_COMMENT
+  // {"response":{"raw_data":true}}
   rpc TenantBind(TenantBindRequst) returns (TenantBindResponse) {
     option (google.api.http) = {
       post : "/tenant/bind"
@@ -68,7 +77,8 @@ service Openapi {
     };
   }
   // Post tenant bind.
-  // RAW_DATA_RESPONSE.
+  // TKEEL_COMMENT
+  // {"response":{"raw_data":true}}
   rpc TenantUnbind(TenantUnbindRequst) returns (TenantUnbindResponse) {
     option (google.api.http) = {
       post : "/tenant/unbind"
@@ -85,7 +95,8 @@ service Openapi {
     };
   }
   // Query status.
-  // RAW_DATA_RESPONSE.
+  // TKEEL_COMMENT
+  // {"response":{"raw_data":true}}
   rpc Status(google.protobuf.Empty) returns (StatusResponse) {
     option (google.api.http) = {
       get : "/status"
