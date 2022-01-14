@@ -10,6 +10,7 @@ init:
 	go get -d -u  github.com/tkeel-io/kit
 	go get -d -u  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@v2.7.0
 
+	go install github.com/ocavue/protoc-gen-typescript@latest
 	go install  github.com/tkeel-io/tkeel-interface/tool/cmd/artisan@latest
 	go install  google.golang.org/protobuf/cmd/protoc-gen-go@v1.27.1
 	go install  google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0
@@ -30,6 +31,7 @@ api:
 		   --openapiv2_opt=allow_merge=true \
  	       --openapiv2_opt=logtostderr=true \
  	       --openapiv2_opt=json_names_for_fields=false \
+ 	       --typescript_out=. \
 	       $(API_PROTO_FILES)
 
 .PHONY: build
