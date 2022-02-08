@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "github.com/tkeel-io/core-broker/api/openapi/v1;v1";
+option go_package = "github.com/tkeel-io/tkeel-template-go/api/openapi/v1;v1";
 option java_multiple_files = true;
 option java_package = "dev.tkeel.hello.api.openapi.v1";
 option java_outer_classname = "OpenapiProtoV1";
