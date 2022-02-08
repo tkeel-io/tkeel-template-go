@@ -41,7 +41,7 @@ func newGreeterHTTPHandler(s GreeterHTTPServer) *GreeterHTTPHandler {
 
 func (h *GreeterHTTPHandler) SayHello(req *go_restful.Request, resp *go_restful.Response) {
 	in := HelloRequest{}
-	if err := transportHTTP.GetBody(req, &in); err != nil {
+	if err := transportHTTP.GetBody(req, &in.Query); err != nil {
 		resp.WriteHeaderAndJson(http.StatusBadRequest,
 			result.Set(http.StatusBadRequest, err.Error(), nil), "application/json")
 		return
@@ -75,7 +75,8 @@ func (h *GreeterHTTPHandler) SayHello(req *go_restful.Request, resp *go_restful.
 	}
 
 	outB, err := protojson.MarshalOptions{
-		UseProtoNames: true,
+		UseProtoNames:   true,
+		EmitUnpopulated: true,
 	}.Marshal(&result.Http{
 		Code: http.StatusOK,
 		Msg:  "ok",
