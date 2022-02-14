@@ -32,8 +32,8 @@ type OpenapiHTTPServer interface {
 	AddonsIdentify(context.Context, *v1.AddonsIdentifyRequest) (*v1.AddonsIdentifyResponse, error)
 	Identify(context.Context, *emptypb.Empty) (*v1.IdentifyResponse, error)
 	Status(context.Context, *emptypb.Empty) (*v1.StatusResponse, error)
-	TenantBind(context.Context, *v1.TenantBindRequst) (*v1.TenantBindResponse, error)
-	TenantUnbind(context.Context, *v1.TenantUnbindRequst) (*v1.TenantUnbindResponse, error)
+	TenantDisable(context.Context, *v1.TenantDisableRequest) (*v1.TenantDisableResponse, error)
+	TenantEnable(context.Context, *v1.TenantEnableRequest) (*v1.TenantEnableResponse, error)
 }
 
 type OpenapiHTTPHandler struct {
@@ -48,7 +48,7 @@ func (h *OpenapiHTTPHandler) AddonsIdentify(req *go_restful.Request, resp *go_re
 	in := v1.AddonsIdentifyRequest{}
 	if err := transportHTTP.GetBody(req, &in); err != nil {
 		resp.WriteHeaderAndJson(http.StatusBadRequest,
-			result.Set(http.StatusBadRequest, err.Error(), nil), "application/json")
+			result.Set(errors.InternalError.Reason, err.Error(), nil), "application/json")
 		return
 	}
 
@@ -59,7 +59,7 @@ func (h *OpenapiHTTPHandler) AddonsIdentify(req *go_restful.Request, resp *go_re
 		tErr := errors.FromError(err)
 		httpCode := errors.GRPCToHTTPStatusCode(tErr.GRPCStatus().Code())
 		resp.WriteHeaderAndJson(httpCode,
-			result.Set(httpCode, tErr.Message, out), "application/json")
+			result.Set(tErr.Reason, tErr.Message, out), "application/json")
 		return
 	}
 	resp.WriteHeaderAndJson(http.StatusOK, out, "application/json")
@@ -69,7 +69,7 @@ func (h *OpenapiHTTPHandler) Identify(req *go_restful.Request, resp *go_restful.
 	in := emptypb.Empty{}
 	if err := transportHTTP.GetQuery(req, &in); err != nil {
 		resp.WriteHeaderAndJson(http.StatusBadRequest,
-			result.Set(http.StatusBadRequest, err.Error(), nil), "application/json")
+			result.Set(errors.InternalError.Reason, err.Error(), nil), "application/json")
 		return
 	}
 
@@ -80,7 +80,7 @@ func (h *OpenapiHTTPHandler) Identify(req *go_restful.Request, resp *go_restful.
 		tErr := errors.FromError(err)
 		httpCode := errors.GRPCToHTTPStatusCode(tErr.GRPCStatus().Code())
 		resp.WriteHeaderAndJson(httpCode,
-			result.Set(httpCode, tErr.Message, out), "application/json")
+			result.Set(tErr.Reason, tErr.Message, out), "application/json")
 		return
 	}
 	resp.WriteHeaderAndJson(http.StatusOK, out, "application/json")
@@ -90,7 +90,7 @@ func (h *OpenapiHTTPHandler) Status(req *go_restful.Request, resp *go_restful.Re
 	in := emptypb.Empty{}
 	if err := transportHTTP.GetQuery(req, &in); err != nil {
 		resp.WriteHeaderAndJson(http.StatusBadRequest,
-			result.Set(http.StatusBadRequest, err.Error(), nil), "application/json")
+			result.Set(errors.InternalError.Reason, err.Error(), nil), "application/json")
 		return
 	}
 
@@ -101,49 +101,49 @@ func (h *OpenapiHTTPHandler) Status(req *go_restful.Request, resp *go_restful.Re
 		tErr := errors.FromError(err)
 		httpCode := errors.GRPCToHTTPStatusCode(tErr.GRPCStatus().Code())
 		resp.WriteHeaderAndJson(httpCode,
-			result.Set(httpCode, tErr.Message, out), "application/json")
+			result.Set(tErr.Reason, tErr.Message, out), "application/json")
 		return
 	}
 	resp.WriteHeaderAndJson(http.StatusOK, out, "application/json")
 }
 
-func (h *OpenapiHTTPHandler) TenantBind(req *go_restful.Request, resp *go_restful.Response) {
-	in := v1.TenantBindRequst{}
+func (h *OpenapiHTTPHandler) TenantDisable(req *go_restful.Request, resp *go_restful.Response) {
+	in := v1.TenantDisableRequest{}
 	if err := transportHTTP.GetBody(req, &in); err != nil {
 		resp.WriteHeaderAndJson(http.StatusBadRequest,
-			result.Set(http.StatusBadRequest, err.Error(), nil), "application/json")
+			result.Set(errors.InternalError.Reason, err.Error(), nil), "application/json")
 		return
 	}
 
 	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), req.Request.Header)
 
-	out, err := h.srv.TenantBind(ctx, &in)
+	out, err := h.srv.TenantDisable(ctx, &in)
 	if err != nil {
 		tErr := errors.FromError(err)
 		httpCode := errors.GRPCToHTTPStatusCode(tErr.GRPCStatus().Code())
 		resp.WriteHeaderAndJson(httpCode,
-			result.Set(httpCode, tErr.Message, out), "application/json")
+			result.Set(tErr.Reason, tErr.Message, out), "application/json")
 		return
 	}
 	resp.WriteHeaderAndJson(http.StatusOK, out, "application/json")
 }
 
-func (h *OpenapiHTTPHandler) TenantUnbind(req *go_restful.Request, resp *go_restful.Response) {
-	in := v1.TenantUnbindRequst{}
+func (h *OpenapiHTTPHandler) TenantEnable(req *go_restful.Request, resp *go_restful.Response) {
+	in := v1.TenantEnableRequest{}
 	if err := transportHTTP.GetBody(req, &in); err != nil {
 		resp.WriteHeaderAndJson(http.StatusBadRequest,
-			result.Set(http.StatusBadRequest, err.Error(), nil), "application/json")
+			result.Set(errors.InternalError.Reason, err.Error(), nil), "application/json")
 		return
 	}
 
 	ctx := transportHTTP.ContextWithHeader(req.Request.Context(), req.Request.Header)
 
-	out, err := h.srv.TenantUnbind(ctx, &in)
+	out, err := h.srv.TenantEnable(ctx, &in)
 	if err != nil {
 		tErr := errors.FromError(err)
 		httpCode := errors.GRPCToHTTPStatusCode(tErr.GRPCStatus().Code())
 		resp.WriteHeaderAndJson(httpCode,
-			result.Set(httpCode, tErr.Message, out), "application/json")
+			result.Set(tErr.Reason, tErr.Message, out), "application/json")
 		return
 	}
 	resp.WriteHeaderAndJson(http.StatusOK, out, "application/json")
@@ -169,10 +169,10 @@ func RegisterOpenapiHTTPServer(container *go_restful.Container, srv OpenapiHTTPS
 		To(handler.Identify))
 	ws.Route(ws.POST("/addons/identify").
 		To(handler.AddonsIdentify))
-	ws.Route(ws.POST("/tenant/bind").
-		To(handler.TenantBind))
-	ws.Route(ws.POST("/tenant/unbind").
-		To(handler.TenantUnbind))
+	ws.Route(ws.POST("/tenant/enable").
+		To(handler.TenantEnable))
+	ws.Route(ws.POST("/tenant/disable").
+		To(handler.TenantDisable))
 	ws.Route(ws.GET("/status").
 		To(handler.Status))
 }
