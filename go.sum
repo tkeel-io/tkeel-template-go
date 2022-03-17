@@ -161,10 +161,10 @@ github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81P
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
 github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/tkeel-io/kit v0.0.0-20220214021338-d36b084b71ae h1:tnnp5eUyrL1zXGfTdbX0aKTGuSvJwJz2u4++E9hsxGc=
-github.com/tkeel-io/kit v0.0.0-20220214021338-d36b084b71ae/go.mod h1:FYeTM+tqf/tdrf2HxUX2wdAAHQM8ggN4+IbZv4b6+wU=
-github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20220214021242-d38447e810ae h1:5UJkSO89WXTQIE1J1WXFTGlNo3jSv1kJIvPmJDEh3sA=
-github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20220214021242-d38447e810ae/go.mod h1:tjJgHPar2pFjydhnOCLspww8tSOvcKch241PeP9OL8E=
+github.com/tkeel-io/kit v0.0.0-20220311032953-c8bf1e0f86cb h1:X+ccMZgS9ZfQa4S2UEwoQbvJmR2snKCndkBxq3R/Z4s=
+github.com/tkeel-io/kit v0.0.0-20220311032953-c8bf1e0f86cb/go.mod h1:ki+q/zN0N2eSfjUnpkx8g3UlVps5waO2bkiIvO85ZCg=
+github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20220311032517-6775df80b836 h1:/NZDsDer7hFlMzZdfGLySoEKs2k90g5CYUjk+AvnXNw=
+github.com/tkeel-io/tkeel-interface/openapi v0.0.0-20220311032517-6775df80b836/go.mod h1:tjJgHPar2pFjydhnOCLspww8tSOvcKch241PeP9OL8E=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

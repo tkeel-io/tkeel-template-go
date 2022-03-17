@@ -67,6 +67,12 @@ message ImplementedPlugin {
   repeated ImplementedAddons addons = 2; // implemented addons point list.
 }
 
+// console portal enum.
+enum ConsolePortal {
+  admin = 0;  // admin portal.
+  tenant = 1; // tenant portal.
+}
+
 // plugin console entry.
 message ConsoleEntry {
   string id = 1;
@@ -75,6 +81,7 @@ message ConsoleEntry {
   string path = 4;
   string entry = 5;
   repeated ConsoleEntry children = 6;
+  ConsolePortal portal = 7;
 }
 
 // plugin define permission.
@@ -108,6 +115,8 @@ message IdentifyResponse {
   repeated BriefPluginInfo dependence =
       8; // dependent plugins.Dependencies must be all installed to install.
   repeated Permission permissions = 9; // plugins define permissions.
+  bool disable_manual_activation =
+      10; // plugins disable tenant manual activation.
 }
 
 /**
