@@ -33,8 +33,8 @@ func (s *OpenapiService) Identify(ctx context.Context, in *emptypb.Empty) (*open
 	return &openapi_v1.IdentifyResponse{
 		Res:          util.GetV1ResultOK(),
 		PluginId:     "tkeel-hello",
-		Version:      "v0.3.0",
-		TkeelVersion: "v0.3.0",
+		Version:      "v0.4.0",
+		TkeelVersion: "v0.4.0",
 	}, nil
 }
 
