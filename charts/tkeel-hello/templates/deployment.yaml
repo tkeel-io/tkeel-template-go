@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "tkeel-hello.name" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app: {{ include "tkeel-hello.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "tkeel-hello.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "tkeel-hello.name" . }}
+    spec:
+      {{- if .imagePullSecrets }}
+      imagePullSecrets:
+        - name: {{ .imagePullSecrets }}
+      {{- end }}
+      containers:
+        - name: {{ include "tkeel-hello.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
